@@ -1,46 +1,56 @@
 import streamlit as st
-import pandas as pd
+import upload_file  # Mengimpor file upload_file.py
 
-# Fungsi untuk halaman upload file
-def halaman_upload_file():
-    # Judul halaman upload file
-    st.title("Unggah Dua File untuk Prediksi Litologi")
+# Menyimpan status halaman dalam session_state
+if 'page' not in st.session_state:
+    st.session_state.page = 1  # Halaman pertama (Intro)
 
-    # Deskripsi singkat aplikasi
+# Fungsi untuk halaman pertama (Intro)
+def halaman_awal():
+    st.title("Prediksi Litologi dengan Data MudLog dengan RandomForestClassification")
+
     st.write("""
-    Silakan unggah dua file:
-    1. **Data Log Acuan**: Data log yang sudah diketahui dan digunakan untuk referensi.
-    2. **Data Log yang akan di Prediksi**: Data log yang belum diketahui dan akan diprediksi berdasarkan model.
+    Aplikasi ini digunakan untuk memprediksi litologi berdasarkan data mudlog menggunakan model RandomForestClassifier. 
+    Silakan lanjutkan dengan mengunggah file data yang akan digunakan untuk membuat model.
     """)
 
-    # Upload file 1: Data Log Acuan
-    file1 = st.file_uploader("Unggah Data Log Acuan (File CSV atau Excel)", type=["csv", "xlsx"])
-    
-    # Upload file 2: Data Log yang akan Prediksi
-    file2 = st.file_uploader("Unggah Data Log yang akan di Prediksi (File CSV atau Excel)", type=["csv", "xlsx"])
+    # Tombol untuk lanjut ke halaman berikutnya (upload file)
+    if st.button('Next'):
+        st.session_state.page = 2  # Mengubah halaman ke halaman upload file
 
-    # Proses jika kedua file diunggah
-    if file1 is not None and file2 is not None:
-        # Membaca file yang diunggah
-        try:
-            if file1.name.endswith("csv"):
-                data1 = pd.read_csv(file1)
-            else:
-                data1 = pd.read_excel(file1)
-            
-            if file2.name.endswith("csv"):
-                data2 = pd.read_csv(file2)
-            else:
-                data2 = pd.read_excel(file2)
+# Fungsi untuk halaman penutup
+def halaman_penutup():
+    st.title("Terima Kasih telah Menggunakan Aplikasi")
 
-            # Menampilkan preview data dari kedua file
-            st.subheader("Preview Data Log Acuan")
-            st.write(data1.head())  # Menampilkan 5 baris pertama data1
-            
-            st.subheader("Preview Data Log yang akan di Prediksi")
-            st.write(data2.head())  # Menampilkan 5 baris pertama data2
+    # Menampilkan gambar penutup
+    st.image("LINE_ALBUM_Arunika part 1_251117_3.jpg", caption="Terima Kasih", use_container_width =True)
 
-            st.write("Data berhasil diunggah. Sekarang bisa melanjutkan ke proses analisis atau prediksi.")
-        
-        except Exception as e:
-            st.error(f"Terjadi kesalahan saat memproses file: {e}")
+    # Opsi untuk kembali ke menu awal
+    if st.button('Kembali ke Menu Awal'):
+        st.session_state.page = 1  # Kembali ke halaman awal
+
+# Menampilkan halaman yang sesuai berdasarkan status 'page'
+if st.session_state.page == 1:
+    halaman_awal()  # Menampilkan halaman awal
+elif st.session_state.page == 2:
+    upload_file.halaman_upload_file()  # Memanggil halaman upload file dari file upload_file.py
+elif st.session_state.page == 3:
+    upload_file.tampilkan_info_kualitas_data()  # Menampilkan informasi kualitas data setelah file diunggah
+elif st.session_state.page == 4:
+    upload_file.clean_data()  # Memanggil fungsi untuk membersihkan data
+elif st.session_state.page == 5:
+    upload_file.tampilkan_heatmap()  # Menampilkan heatmap korelasi antar variabel
+elif st.session_state.page == 6:
+    upload_file.tampilkan_feature_importance()  # Menampilkan feature importance
+elif st.session_state.page == 7:
+    upload_file.tampilkan_input_parameters()  # Menampilkan input parameter (train-test split dan top features)
+elif st.session_state.page == 8:
+    upload_file.tampilkan_perbandingan_aktual_prediksi()  # Menampilkan perbandingan aktual vs prediksi
+elif st.session_state.page == 9:
+    upload_file.download_prediksi_litologi()  # Menyediakan download prediksi litologi
+elif st.session_state.page == 10:
+    upload_file.upload_file_baru()  # Halaman untuk upload data mudlog baru
+elif st.session_state.page == 11:
+    upload_file.tampilkan_perbandingan_aktual_prediksi_baru()  # Menampilkan perbandingan aktual vs prediksi pada data baru
+elif st.session_state.page == 12:
+    halaman_penutup()  # Halaman penutup
