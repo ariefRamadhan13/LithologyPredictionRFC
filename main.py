@@ -2,7 +2,7 @@
 import streamlit as st
 from PIL import Image
 
-img = Image.open("Logo_Institut_Teknologi_Bandung (2).png")
+img = Image.open("Logo_Institut_Teknologi_Bandung (1).png")
 st.image(img,width = 1500)
 
 def main():
