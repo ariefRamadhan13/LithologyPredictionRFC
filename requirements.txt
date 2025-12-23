@@ -1,1 +1,10 @@
-
+matplotlib
+scikit-learn
+statsmodels
+seaborn 
+missingno 
+openpyxl
+tensorflow
+xlsxwriter
+keras
+plotly
