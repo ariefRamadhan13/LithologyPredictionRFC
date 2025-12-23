@@ -23,7 +23,7 @@ def halaman_penutup():
     st.title("Terima Kasih telah Menggunakan Aplikasi")
 
     # Menampilkan gambar penutup
-    st.image("LINE_ALBUM_Arunika part 1_251117_3.jpg", caption="Terima Kasih", use_container_width =True)
+    # st.image("LINE_ALBUM_Arunika part 1_251117_3.jpg", caption="Terima Kasih", use_container_width =True)
 
     # Opsi untuk kembali ke menu awal
     if st.button('Kembali ke Menu Awal'):
