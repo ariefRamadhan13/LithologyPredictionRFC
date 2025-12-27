@@ -226,7 +226,7 @@ def tampilkan_perbandingan_aktual_prediksi():
 
         litology_mapping = {
             1: 'CLAY, SHALE',
-            2: 'SILTSTONE',
+            2: 'SANDSTONE',
             3: 'LIMESTONE',
             4: 'SHALE',
             5: 'COAL'
@@ -237,7 +237,7 @@ def tampilkan_perbandingan_aktual_prediksi():
         X_test['Predicted_LITH'] = X_test['Predicted_LITH'].map(litology_mapping)
 
         # Menentukan warna berdasarkan litologi
-        litology_colors = {'CLAY, SHALE': 'blue', 'SILTSTONE': 'green', 'LIMESTONE': 'orange', 'SHALE': 'red', 'COAL': 'purple'}
+        litology_colors = {'CLAY, SHALE': 'blue', 'SANDSTONE': 'yellow', 'LIMESTONE': 'orange', 'SHALE': 'red', 'COAL': 'purple'}
 
         # Membuat grafik dengan Depth di sumbu Y dan Litologi di sumbu X
         plt.figure(figsize=(12, 30))
@@ -290,7 +290,7 @@ def download_prediksi_litologi():
         # Mapping litologi
         lithology_map = {
             1: 'CLAY, SHALE',
-            2: 'SILTSTONE',
+            2: 'SANDSTONE',
             3: 'LIMESTONE',
             4: 'SHALE',
             5: 'COAL'
@@ -366,7 +366,7 @@ def upload_file_baru():
 
                     lithology_map = {
                         1: 'CLAY, SHALE',
-                        2: 'SILTSTONE',
+                        2: 'SANDSTONE',
                         3: 'LIMESTONE',
                         4: 'SHALE',
                         5: 'COAL'
@@ -416,7 +416,7 @@ def tampilkan_perbandingan_aktual_prediksi_baru():
         # Mapping litologi
         lithology_map = {
             1: 'CLAY, SHALE',
-            2: 'SILTSTONE',
+            2: 'SANDSTONE',
             3: 'LIMESTONE',
             4: 'SHALE',
             5: 'COAL'
@@ -425,7 +425,7 @@ def tampilkan_perbandingan_aktual_prediksi_baru():
         data_baru['Predicted_LITH_Name'] = data_baru['Predicted_LITH'].map(lithology_map)
 
         # Menentukan warna berdasarkan litologi
-        litology_colors = {'CLAY, SHALE': 'blue', 'SILTSTONE': 'green', 'LIMESTONE': 'orange', 'SHALE': 'red', 'COAL': 'purple'}
+        litology_colors = {'CLAY, SHALE': 'blue', 'SANDSTONE': 'yellow', 'LIMESTONE': 'orange', 'SHALE': 'red', 'COAL': 'purple'}
 
         # Membuat grafik dengan Depth di sumbu Y dan Litologi di sumbu X
         plt.figure(figsize=(12, 30))
